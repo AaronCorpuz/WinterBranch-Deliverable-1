@@ -51,5 +51,15 @@ public class COMplayer
         }
     }
     return count;
+    }
+    public void handRemove(int p)
+    {
+    for(int i=0;i<=hand.size();i++)
+    {
+        if(hand.get(i)==p)
+        {
+            hand.remove(i);
+        }
+    }
 }
 }
