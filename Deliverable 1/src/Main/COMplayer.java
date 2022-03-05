@@ -4,6 +4,10 @@ public class COMplayer
 {
     ArrayList<Integer> hand = new ArrayList<>(); 
 
+    public COMplayer() 
+    {
+    }
+
     public ArrayList<Integer> getHand() {
         return hand;
     }
