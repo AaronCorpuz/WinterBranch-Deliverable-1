@@ -10,13 +10,13 @@ import java.util.ArrayList;
  * @author Ophir Neymour
  */
 public class CardDeck  {
- 
-    
-     
-        private ArrayList<Integer> deck = new ArrayList<>();
-        
-        
-        public CardDeck(ArrayList<Card> deck){
+
+
+
+        ArrayList<Integer> deck = new ArrayList<>();
+
+
+        public CardDeck(){
         }
 
 public void generateCards() {
@@ -35,47 +35,26 @@ public void generateCards() {
           deck.add(12);
           deck.add(13);
      }
-            
-        
-        
-            
-            
-            
+
+
+
+
+
+
         }
-        
-        
-        
-    
- 
 
- 
- 
- 
-     
-    
-
-    
-   
- 
-    
-   
-                
-    
- 
-    
-    
        public void cardCheck(int y){
            int count = 0;
-          
+
             for(int i=0;i<=deck.size();i++)
             {
-               
-                if (deck[i] == y) {
+
+                if (deck.get(i) == y) {
                       count++;
-                    deck[i] = 0;
+                      deck.set(i, 0);
                }
              } 
-            
+
         }
 
 public void cardDestroy(int a)
@@ -88,16 +67,13 @@ public void cardDestroy(int a)
                  deck.remove(i);
                  } 
             }
-    /**
-     *
-     * @return
-     */
-    public Integer cardDraw(){
-     int index = (int)(Math.random() * deck.size());
-     return deck.get(index);
-}
-        
-  }
-        
 }
 
+    
+    public int cardDraw(){
+     int index = (int)(Math.random() * deck.size());
+     return deck.get(index);
+    }
+
+
+}
