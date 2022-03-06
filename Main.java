@@ -5,7 +5,6 @@
 package main;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Scanner;
 
 /**
@@ -19,8 +18,10 @@ public class Main {
      */
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        //CardDeck cd = new CardDeck();
-        //COMPlayer cpu = new COMPlayer();
+        CardDeck cd;
+        cd = new CardDeck();
+        COMplayer cpu;
+        cpu = new COMplayer();
         Boolean play = true, check = false, redraw = false;
         
         int round = 0;
@@ -34,18 +35,14 @@ public class Main {
         System.out.println("We're going to be playing Go Fish! Time to start distributing cards.\n"
                 + "We will be starting with 7 cards each. Have fun!");
         
-        //cd.generateCards();
+        cd.generateCards();
         for (int i = 0; i < 7; i++) {
             
-//            hand[i] = cd.cardDraw();
-//            cpu.handAdd(cd.cardDraw);
+            hand[i] = cd.cardDraw();
+            cpu.handAdd(cd.cardDraw());
     
         }
         
-        hand[0] = 7;
-        hand[1] = 2;
-        hand[5] = 11;
-        hand[30] = 1;
         do {
             round++;
             check = false;
@@ -53,7 +50,8 @@ public class Main {
             
             Arrays.sort(hand);
             
-            System.out.println("Round " + round + "! It's your turn now.\n");
+            System.out.println("Round " + round + "! The current points are\nYou: " 
+                   + uPoint + "CPU: " + cPoint + "\n\nIt's your turn now.\n");
             
             System.out.println("These are your cards. Select one to ask the opponent.\n");
             
@@ -93,7 +91,7 @@ public class Main {
             }
             while(check == false);
 
-//            found = cardSelect(ask);
+            found = cpu.cardSelect(ask);
             if (found == 0) {
                 System.out.println("Go Fish!");
 //                hand[0] = cd.cardDraw();
@@ -158,28 +156,76 @@ public class Main {
             }
             
             if (redraw == true) {
-                for (int i = 0; i < 7; i++) {
-            
-//              hand[i] = cd.cardDraw();
+                
+                if (!cd.deck.isEmpty()) {
+                    for (int i = 0; i < 7; i++) {
+                    redraw = false;
+                    hand[i] = cd.cardDraw();
     
+                    }
                 }
-                Arrays.sort(hand);
+                
             }
+            
+            Arrays.sort(hand);
             
             System.out.println("It's now my turn!");
             
+            ask = cpu.cardAsk();
+            found = 0;
             
+            System.out.println("Do you have any " + ask+"s?");
+            
+            for(int i = hand.length -1; i >= 0; i--) {
+                if (hand[i] == ask) {
+                    found++;
+                    hand[i] = 0;
+                }
+                
+            }
+            if (found == 0) {
+                System.out.println("Aww... Go Fish!");
+            }
+            else {
+                for (int i = 0; i >= found; i++) {
+                   cpu.handAdd(ask); 
+                }   
+            }
+            
+            if (cpu.cardSelect(ask) == 4) {
+                cpu.handRemove(ask);
+            }
+            
+            if (cpu.hand.size() == 0) {
+                
+                if (!cd.deck.isEmpty()) {
+                    for (int i = 0; i < 7; i++) {
+                    cpu.handAdd(cd.cardDraw());
+                    }
+                }
+            }
+            
+            if (redraw == true && cpu.hand.size() == 0 && !cd.deck.isEmpty()) {
+                play = false;
+            }
             
         }
         while(play == true);
         
-    
+    System.out.println("Game Over! There are no more cards!\n"
+            + "The player has " + uPoint + " points and the CPU has "
+                    + cPoint +" points.\n\n");
         
+    if (uPoint > cPoint) {
+        System.out.println("You win! Congratulations!");
+    }
+    else if (cPoint > uPoint) {
+        System.out.println("The CPU wins! Better luck next time!");
+    }
+    else {
+        System.out.println("It's a tie!");
+    }
     
         
     }
-    
-    
-    
-    
 }
