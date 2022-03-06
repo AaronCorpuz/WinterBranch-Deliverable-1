@@ -1,60 +1,103 @@
 
 package gofish;
 
+import java.util.ArrayList;
+
 
 
 /** This class ++ System 17796 Fundamentals of Software Design and Development
  *
  * @author Ophir Neymour
  */
-public class CardDeck {
+public class CardDeck  {
  
     
-    public static void main (String[] args){
-        
-        String[]suit ={"Clubs", "Hearts", "Diamonds", "Spades"};
-        String[]rank = {"2","3","4","5","6","7","8","9","10", "J","Q","K","A"};
-        
-        int [] deck = new int[52];
-    
- for(int i = 0; i < deck.length;i++) deck[i] = i;
- 
- for(int i = 0; i < deck.length; i++){
      
-     int index = (int)Math.random() * deck.length);
-     int temp = deck[i];
-     deck[i] = deck[index];
-     deck[index] = temp;
+        private ArrayList<Integer> deck = new ArrayList<>();
+        
+        
+        public CardDeck(ArrayList<Card> deck){
+        }
 
- }
- 
- 
-     
-    
-} 
-    private final String  suitId;
-    private final String rankId ;
-    
-    public GenerateCard(String suit, String rank){
-     this.suitId= suit;
-     this.rankId = rank;
- }
-    
-    public String getGenerateCard(){
-        return suitId, rankId;
-                
-    }
- 
-    public void setGenerateCard(){
-        for (int i = 0; i < 4; i++){
-     String suit = suits[deck[i] / 13];
-     String rank  = ranks[deck[i] % 13];
-     System.out.println("Card number" + deck[i] +":" + "of"+ suit);
-    }
-        public getCardCheck(){
+public void generateCards() {
+     for (int i = 0; i < 4; i++) {
+          deck.add(1);
+          deck.add(2);
+          deck.add(3);
+          deck.add(4);
+          deck.add(5);
+          deck.add(6);
+          deck.add(7);
+          deck.add(8);
+          deck.add(9);
+          deck.add(10);
+          deck.add(11);
+          deck.add(12);
+          deck.add(13);
+     }
+            
+        
+        
+            
+            
             
         }
-  }
+        
+        
+        
+    
+ 
+
+ 
+ 
+ 
+     
+    
+
+    
+   
+ 
+    
+   
+                
+    
+ 
+    
+    
+       public void cardCheck(int y){
+           int count = 0;
+          
+            for(int i=0;i<=deck.size();i++)
+            {
+               
+                if (deck[i] == y) {
+                      count++;
+                    deck[i] = 0;
+               }
+             } 
+            
         }
 
+public void cardDestroy(int a)
+
+        {
+            for(int i=0;i<=deck.size();i++)
+            {
+            if(deck.get(i)==a)
+                 {
+                 deck.remove(i);
+                 } 
+            }
+    /**
+     *
+     * @return
+     */
+    public Integer cardDraw(){
+     int index = (int)(Math.random() * deck.size());
+     return deck.get(index);
+}
+        
+  }
+        
+}
 
