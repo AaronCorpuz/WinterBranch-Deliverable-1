@@ -1,5 +1,5 @@
 
-package gofish;
+package main;
 
 import java.util.ArrayList;
 
